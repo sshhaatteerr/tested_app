@@ -16,14 +16,54 @@ RSpec.describe Post, type: :model do
   end
 
   it 'has a body' do
+    post = Post.new(
+      title: 'A valid title',
+      body: '',
+      user: current_user,
+      views: 0
+    )
+
+    expect(post).to_not be_valid
+    post.title = 'Has a body'
+    expect(post).to be_valid
   end
 
   it 'has title at leaset 2 characters long' do
+    post = Post.new(
+      title: '',
+      body: 'A valid body',
+      user: current_user,
+      views: 0
+    )
+    expect(post).to_not be_valid
+    post.title = '12'
+    expect(post).to be_valid
   end
 
   it 'has a body between a 5 and 100 characters' do
+    post = Post.new(
+      title: 'A valid title',
+      body: '',
+      user: current_user,
+      views: 0
+    )
+    expect(post).to_not be_valid
+
+    post.body = '12345'
+    expect(post).to be_valid
+
+    hundred_char_string = '4i6dw1xAnfSFsiml5g9PB78NHtimbYwL82pe8xdqeE8EWZhXdwW74eU6wdR93UUYSlcjlF69bCorb0UklrblGVLhwbmcAI9EUTzI'
+    post.body = hundred_char_string + '1'
+    expect(post).to_not be_valid
   end
 
   it 'has numerical views' do
+    post = Post.new(
+      title: '12',
+      body: '1234',
+      user: current_user,
+      views: 0
+    )
+    expect(post.views).to be_a(Integer)
   end
 end
