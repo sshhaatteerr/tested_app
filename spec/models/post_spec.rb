@@ -53,6 +53,9 @@ RSpec.describe Post, type: :model do
     expect(post).to be_valid
 
     hundred_char_string = '4i6dw1xAnfSFsiml5g9PB78NHtimbYwL82pe8xdqeE8EWZhXdwW74eU6wdR93UUYSlcjlF69bCorb0UklrblGVLhwbmcAI9EUTzI'
+    post.body = hundred_char_string
+    expect(post).to be_valid
+
     post.body = hundred_char_string + '1'
     expect(post).to_not be_valid
   end
