@@ -9,8 +9,8 @@ RSpec.describe Post, type: :model do
       user: current_user,
       views: 0
     )
-
     expect(post).to_not be_valid
+
     post.title = 'Has a title'
     expect(post).to be_valid
   end
@@ -22,9 +22,9 @@ RSpec.describe Post, type: :model do
       user: current_user,
       views: 0
     )
-
     expect(post).to_not be_valid
-    post.title = 'Has a body'
+
+    post.body = 'Has a title'
     expect(post).to be_valid
   end
 
