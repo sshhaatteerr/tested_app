@@ -5,10 +5,10 @@ RSpec.describe "posts/edit", type: :view do
 
   before(:each) do
     @post = assign(:post, Post.create!(
-      title: "MyString",
-      body: "MyText",
-      user: nil,
-      views: 1
+                            title: "MyString",
+                            body: "MyText",
+                            user: current_user,
+                            views: 1
     ))
   end
 
@@ -16,7 +16,6 @@ RSpec.describe "posts/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", post_path(@post), "post" do
-
       assert_select "input[name=?]", "post[title]"
 
       assert_select "textarea[name=?]", "post[body]"
